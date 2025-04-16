@@ -1,0 +1,468 @@
+/* --- Global Settings & Variables --- */
+:root {
+    --primary-bg: #f4f4f6;
+    --secondary-bg: #ffffff;
+    --header-bg: #e8eaed;
+    --footer-bg: #d1d5db;
+    --text-color: #373a47; /* Slightly darker text */
+    --heading-color: #2d303a;
+    --accent-color: #6c7a89;
+    --accent-hover: #54606d;
+    --warning-bg: #fff3cd;
+    --warning-border: #ffeeba;
+    --warning-text: #856404;
+    --border-color: #d1d5db;
+
+    /* --- NEW/UPDATED COLORS --- */
+    --accent-green-1: #3a7d70; /* Muted Teal/Green for prices */
+    --accent-green-2: #6a997c; /* Softer Green for accents */
+    --accent-red: #c0392b;    /* Desaturated Red for warnings */
+
+    --font-primary: 'Lato', system-ui, sans-serif;
+    --font-secondary: 'Montserrat', system-ui, sans-serif;
+
+    --image-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); /* Subtle shadow */
+    --image-radius: 6px; /* Rounded corners */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-secondary);
+    color: var(--heading-color);
+    margin-bottom: 0.75em;
+    font-weight: 600; /* Slightly bolder headings */
+}
+
+p {
+    margin-bottom: 1em;
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.2s ease; /* Smooth transition */
+}
+
+a:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+ul {
+    margin-left: 25px; /* Slightly more indent */
+    margin-bottom: 1em;
+    list-style: disc; /* Ensure bullets are visible */
+}
+/* Optional: Style list bullets with green */
+/* ul li::marker {
+    color: var(--accent-green-2);
+} */
+
+li {
+    margin-bottom: 0.6em; /* Slightly more space */
+}
+
+/* --- Header --- */
+.portal-header {
+    background-color: var(--header-bg);
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-color);
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Subtle shadow for header */
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo-placeholder {
+    font-family: var(--font-secondary);
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--heading-color);
+}
+
+.top-nav {
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+.top-nav a {
+    margin: 0 0.6rem; /* Slightly more spacing */
+    color: var(--text-color);
+    font-weight: 400; /* Normal weight */
+}
+.top-nav a:hover {
+     color: var(--accent-hover);
+}
+
+
+.header-dept {
+    max-width: 1200px;
+    margin: 0.5rem auto 0;
+    padding: 0 1rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: #666;
+    letter-spacing: 0.5px; /* Add subtle spacing */
+    text-align: center;
+}
+@media (min-width: 768px) {
+     .header-dept {
+         text-align: left;
+     }
+}
+
+/* --- Landing Page --- */
+.landing-content {
+    max-width: 800px;
+    margin: 3rem auto; /* More top/bottom margin */
+    padding: 2.5rem; /* More padding */
+    background-color: var(--secondary-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px; /* Slightly rounded corners */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.07); /* Subtle shadow */
+    flex-grow: 1;
+    text-align: center;
+}
+
+.landing-content h1 {
+    color: var(--accent-red); /* Use defined red */
+    font-size: 2.3rem; /* Slightly adjusted size */
+    margin-bottom: 0.25em;
+    font-weight: 700; /* Bolder */
+}
+.landing-content h2 {
+    font-size: 1.1rem; /* Adjusted size */
+    color: #777;
+    margin-bottom: 2em; /* More space below */
+    font-weight: 400;
+}
+
+.welcome-text {
+    font-size: 1.3rem;
+    font-weight: 600; /* Semibold */
+    margin-bottom: 1.5em;
+}
+
+.warning-box {
+    background-color: var(--warning-bg);
+    border: 1px solid var(--warning-border);
+    color: var(--warning-text);
+    padding: 1.2rem; /* More padding */
+    margin: 2rem 0; /* More margin */
+    border-radius: 4px;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+.warning-box strong {
+    color: var(--accent-red); /* Red for emphasis within warning */
+    font-weight: 700;
+}
+
+.btn-proceed {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: #fff;
+    padding: 0.9rem 1.8rem; /* Larger padding */
+    border: none;
+    border-radius: 4px;
+    font-family: var(--font-secondary);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease; /* Add transform transition */
+    text-decoration: none;
+    margin-top: 2rem;
+}
+
+.btn-proceed:hover {
+    background-color: var(--accent-hover);
+    color: #fff;
+    text-decoration: none;
+    transform: translateY(-2px); /* Subtle lift on hover */
+}
+
+/* --- Product Catalogue Page --- */
+.product-catalogue {
+    max-width: 1200px;
+    width: 100%;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    flex-grow: 1;
+}
+
+.swiper-container {
+    width: 100%;
+    height: auto;
+    background-color: var(--secondary-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px; /* Rounded corners */
+    padding: 2rem 0;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.07); /* Subtle shadow */
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 1.5rem 3rem; /* Adjusted padding */
+    height: auto;
+    overflow: hidden; /* Prevent content spill */
+}
+
+.product-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+}
+
+.product-content img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    object-fit: contain;
+    margin: 0 auto;
+    /* border: 1px solid var(--border-color); REMOVED - Replaced by shadow */
+    background-color: #fff;
+    border-radius: var(--image-radius); /* ADDED: Rounded corners */
+    box-shadow: var(--image-shadow); /* ADDED: Subtle shadow */
+    cursor: pointer; /* ADDED: Indicate clickable */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth transition */
+}
+
+.product-content img:hover {
+    transform: scale(1.02); /* Slight zoom on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Slightly enhance shadow on hover */
+}
+
+.product-details {
+    flex: 1;
+}
+
+.product-details h2 {
+    font-size: 1.6rem; /* REDUCED: Smaller title */
+    margin-bottom: 0.5em;
+    font-weight: 600;
+}
+
+.req-code {
+    font-size: 0.9rem;
+    color: var(--accent-green-2); /* UPDATED: Use accent green */
+    margin-bottom: 1.5em; /* More space */
+    font-family: monospace;
+    font-weight: 600; /* Make it stand out slightly */
+}
+
+.description {
+    font-size: 0.95rem;
+    margin-bottom: 1.5em;
+    max-height: 350px; /* Adjust as needed */
+    overflow-y: auto;
+    padding-right: 15px; /* More space for scrollbar */
+    color: #495057; /* Slightly lighter description text */
+}
+
+/* Optional: Nicer scrollbar for Webkit browsers */
+.description::-webkit-scrollbar {
+  width: 8px;
+}
+.description::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+.description::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+.description::-webkit-scrollbar-thumb:hover {
+  background: #aaa;
+}
+
+
+/* ADDED: Style for notice paragraphs */
+.notice-paragraph {
+    font-style: italic;
+    font-size: 0.9rem; /* Slightly smaller */
+    color: #5a6268; /* Muted color */
+    margin-top: 1.5em;
+    padding: 0.8em;
+    background-color: #f8f9fa; /* Very light grey background */
+    border-left: 3px solid var(--accent-color); /* Accent border */
+    border-radius: 0 4px 4px 0;
+}
+
+.notice-paragraph strong {
+    font-style: normal; /* Keep keyword non-italic */
+    font-weight: 700;
+    color: var(--heading-color); /* Make keyword slightly darker */
+}
+
+
+.price {
+    font-size: 1.5rem; /* Slightly larger price */
+    font-weight: 700; /* Bolder price */
+    color: var(--accent-green-1); /* UPDATED: Use accent green */
+    margin-top: 1.5rem;
+}
+
+/* --- Swiper Navigation/Pagination --- */
+.swiper-button-next,
+.swiper-button-prev {
+    color: var(--accent-color) !important;
+    background-color: rgba(255, 255, 255, 0.8); /* Slightly more opaque */
+    border-radius: 50%;
+    width: 44px !important;
+    height: 44px !important;
+    margin-top: -22px !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15); /* Add shadow to buttons */
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+     color: var(--accent-hover) !important;
+     background-color: rgba(255, 255, 255, 0.95);
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    font-size: 20px !important;
+}
+
+.swiper-pagination-bullet {
+    background: var(--accent-color) !important;
+    opacity: 0.4 !important; /* Less opaque inactive */
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.swiper-pagination-bullet-active {
+    background: var(--accent-hover) !important;
+    opacity: 1 !important;
+}
+
+/* --- Footer --- */
+.portal-footer {
+    background-color: var(--footer-bg);
+    color: #4b5563; /* Slightly adjusted text color */
+    font-size: 0.8rem;
+    padding: 1rem;
+    text-align: center;
+    margin-top: 3rem; /* More space above footer */
+    border-top: 1px solid var(--border-color);
+}
+
+/* ... (rest of footer styles remain the same) ... */
+
+/* --- ADDED: Image Lightbox Styles --- */
+#image-lightbox {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.85); /* Black w/ opacity */
+    cursor: pointer; /* Indicate clickable to close */
+    justify-content: center;
+    align-items: center;
+}
+
+#image-lightbox.active {
+    display: flex; /* Use flex to center content */
+}
+
+#lightbox-img {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: var(--image-radius); /* Consistent rounding */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4); /* Shadow for the lightbox image */
+    cursor: default; /* Normal cursor over the image itself */
+}
+
+/* --- Responsive Adjustments --- */
+@media (min-width: 768px) {
+    .product-content {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    .product-content img {
+        width: 40%;
+        max-width: 450px;
+        margin: 0;
+    }
+     .product-details {
+        width: 55%;
+    }
+    .swiper-slide {
+         padding: 2.5rem 4rem; /* Increased padding */
+    }
+}
+
+@media (max-width: 600px) {
+     .header-content {
+         flex-direction: column;
+         gap: 0.5rem;
+     }
+     .top-nav {
+         text-align: center;
+         width: 100%;
+         margin-top: 0.5rem;
+     }
+     .top-nav a {
+         margin: 0 0.3rem;
+         display: inline-block;
+     }
+     .landing-content h1 { font-size: 1.8rem; }
+     .landing-content h2 { font-size: 1rem; }
+
+     .swiper-button-next,
+     .swiper-button-prev {
+         display: none;
+     }
+     .swiper-slide {
+         padding: 1.5rem 1rem; /* Adjusted padding */
+     }
+     .description {
+        max-height: 250px;
+     }
+     .product-details h2 {
+        font-size: 1.4rem; /* Further reduce title on mobile */
+     }
+     .price {
+        font-size: 1.3rem; /* Adjust price size */
+     }
+}

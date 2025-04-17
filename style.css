@@ -1,28 +1,25 @@
 /* --- Global Settings & Variables --- */
 :root {
-    --primary-bg: #f4f4f6;
-    --secondary-bg: #ffffff;
-    --header-bg: #e8eaed;
-    --footer-bg: #d1d5db;
-    --text-color: #373a47; /* Slightly darker text */
-    --heading-color: #2d303a;
-    --accent-color: #6c7a89;
-    --accent-hover: #54606d;
-    --warning-bg: #fff3cd;
-    --warning-border: #ffeeba;
-    --warning-text: #856404;
-    --border-color: #d1d5db;
+    /* Defined Palette */
+    --bg-lightest: #F5F5F5;
+    --bg-subtle-contrast: #FFFFFF;
+    --border-muted: #D1D5DB;
+    --text-muted: #6B7280;
+    --text-body: #374151;
+    --text-headings: #111827; /* Darkest grey/black */
+    --accent-red: #DC2626;
+    --accent-green: #10B981; /* Main Green Accent */
+    --accent-green-darker: #059669; /* Darker green for hover */
 
-    /* --- NEW/UPDATED COLORS --- */
-    --accent-green-1: #3a7d70; /* Muted Teal/Green for prices */
-    --accent-green-2: #6a997c; /* Softer Green for accents */
-    --accent-red: #c0392b;    /* Desaturated Red for warnings */
+    /* Fonts */
+    --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --font-mono: 'Roboto Mono', monospace;
 
-    --font-primary: 'Lato', system-ui, sans-serif;
-    --font-secondary: 'Montserrat', system-ui, sans-serif;
-
-    --image-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); /* Subtle shadow */
-    --image-radius: 6px; /* Rounded corners */
+    /* Base Spacing & Style */
+    --base-line-height: 1.7;
+    --subtle-radius: 4px;
+    --image-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    --image-radius: var(--subtle-radius);
 }
 
 * {
@@ -31,239 +28,349 @@
     padding: 0;
 }
 
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'liga' 1, 'kern' 1;
+}
+
 body {
-    font-family: var(--font-primary);
-    background-color: var(--primary-bg);
-    color: var(--text-color);
-    line-height: 1.6;
+    font-family: var(--font-sans);
+    background-color: var(--bg-lightest);
+    color: var(--text-body);
+    line-height: var(--base-line-height);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    position: relative; /* Needed for potential body watermark */
 }
 
+/* Optional: Subtle background watermark on body */
+/* body::before {
+    content: '';
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50vw;
+    height: 50vh;
+    background-image: url('KK_logo_6.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: -1;
+    filter: grayscale(100%) contrast(0%); /* Make it very light grey */
+/*}*/
+
+
+/* --- Typography Hierarchy --- */
 h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-secondary);
-    color: var(--heading-color);
-    margin-bottom: 0.75em;
-    font-weight: 600; /* Slightly bolder headings */
+    font-family: var(--font-sans);
+    color: var(--text-headings);
+    margin-bottom: 0.6em;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
 }
 
 p {
-    margin-bottom: 1em;
+    margin-bottom: 1.2em;
+    max-width: 65ch; /* Limit line length for readability */
 }
 
 a {
-    color: var(--accent-color);
+    color: var(--text-headings);
     text-decoration: none;
-    transition: color 0.2s ease; /* Smooth transition */
+    font-weight: 500;
+    transition: color 0.2s ease;
 }
 
 a:hover {
-    color: var(--accent-hover);
-    text-decoration: underline;
+    color: var(--text-muted);
+    text-decoration: none;
 }
 
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
+strong, b {
+    font-weight: 600;
+    color: var(--text-headings);
 }
 
 ul {
-    margin-left: 25px; /* Slightly more indent */
-    margin-bottom: 1em;
-    list-style: disc; /* Ensure bullets are visible */
+    margin-left: 20px;
+    margin-bottom: 1.2em;
+    list-style: square;
 }
-/* Optional: Style list bullets with green */
-/* ul li::marker {
-    color: var(--accent-green-2);
-} */
+ul li::marker {
+    color: var(--border-muted);
+}
 
 li {
-    margin-bottom: 0.6em; /* Slightly more space */
+    margin-bottom: 0.6em;
+    padding-left: 0.5em;
 }
 
-/* --- Header --- */
+.monospace {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+    color: var(--text-muted);
+}
+
+/* --- Header Refined --- */
 .portal-header {
-    background-color: var(--header-bg);
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--border-color);
+    background-color: var(--bg-subtle-contrast);
+    padding: 1rem 0; /* Adjusted padding */
+    border-bottom: 1px solid var(--border-muted);
     width: 100%;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Subtle shadow for header */
 }
 
 .header-content {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
 }
 
-.logo-placeholder {
-    font-family: var(--font-secondary);
-    font-size: 1.8rem;
-    font-weight: 600;
-    color: var(--heading-color);
+/* Updated logo styling */
+.header-logo img {
+    display: block;
+    height: 40px; /* Control logo size */
+    width: auto;
+    /* Assuming KK_logo_6.png is black lines on transparent */
+    /* No filter needed if image is correct color */
 }
+/* If KK_logo_6.png is white on black/transparent, uncomment below */
+/* .header-logo img {
+    filter: brightness(0) invert(0.1); /* Approx maps white to --text-headings */
+/* } */
+
 
 .top-nav {
     font-size: 0.9rem;
-    color: var(--text-color);
 }
 
 .top-nav a {
-    margin: 0 0.6rem; /* Slightly more spacing */
-    color: var(--text-color);
-    font-weight: 400; /* Normal weight */
+    margin: 0 0.5rem;
+    color: var(--text-body);
+    font-weight: 500;
 }
 .top-nav a:hover {
-     color: var(--accent-hover);
+     color: var(--text-headings);
 }
 
 
 .header-dept {
     max-width: 1200px;
-    margin: 0.5rem auto 0;
-    padding: 0 1rem;
-    font-size: 0.8rem;
+    margin: 0.75rem auto 0;
+    padding: 0 1.5rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
-    color: #666;
-    letter-spacing: 0.5px; /* Add subtle spacing */
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
     text-align: center;
 }
 @media (min-width: 768px) {
-     .header-dept {
-         text-align: left;
-     }
+     .header-dept { text-align: left; }
+     .portal-header { padding: 1.5rem 0; } /* More padding on desktop */
 }
 
-/* --- Landing Page --- */
+/* --- Landing Page Refined --- */
 .landing-content {
-    max-width: 800px;
-    margin: 3rem auto; /* More top/bottom margin */
-    padding: 2.5rem; /* More padding */
-    background-color: var(--secondary-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 6px; /* Slightly rounded corners */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.07); /* Subtle shadow */
+    max-width: 750px;
+    margin: 4rem auto;
+    padding: 3rem;
+    background-color: var(--bg-subtle-contrast);
+    border: 1px solid var(--border-muted);
+    border-radius: var(--subtle-radius);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     flex-grow: 1;
+    /* text-align: center; Removed default center */
+}
+
+/* Center specific elements explicitly */
+.landing-content h1,
+.landing-content h2,
+.landing-content .welcome-text,
+.landing-content .btn-proceed {
     text-align: center;
 }
 
+/* Justify main paragraphs and warning */
+.landing-content p:not(.welcome-text), /* Exclude welcome text */
+.landing-content .warning-box {
+    text-align: justify;
+    /* Re-center block elements within the container if needed */
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .landing-content h1 {
-    color: var(--accent-red); /* Use defined red */
-    font-size: 2.3rem; /* Slightly adjusted size */
-    margin-bottom: 0.25em;
-    font-weight: 700; /* Bolder */
+    color: var(--accent-red);
+    font-size: 2.5rem;
+    margin-bottom: 0.3em;
+    font-weight: 700;
+    letter-spacing: -0.02em;
 }
 .landing-content h2 {
-    font-size: 1.1rem; /* Adjusted size */
-    color: #777;
-    margin-bottom: 2em; /* More space below */
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 2.5em;
     font-weight: 400;
+    letter-spacing: normal;
+    max-width: none;
 }
 
 .welcome-text {
-    font-size: 1.3rem;
-    font-weight: 600; /* Semibold */
-    margin-bottom: 1.5em;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 2em;
+    color: var(--text-headings);
 }
 
 .warning-box {
-    background-color: var(--warning-bg);
-    border: 1px solid var(--warning-border);
-    color: var(--warning-text);
-    padding: 1.2rem; /* More padding */
-    margin: 2rem 0; /* More margin */
-    border-radius: 4px;
-    text-align: left;
+    background-color: #FEF2F2;
+    border: 1px solid #FEE2E2;
+    color: #991B1B;
+    padding: 1.5rem;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem; /* Consistent margin */
+    border-radius: var(--subtle-radius);
     font-size: 0.95rem;
+    max-width: 65ch; /* Apply max-width like paragraphs */
 }
 
 .warning-box strong {
-    color: var(--accent-red); /* Red for emphasis within warning */
+    color: var(--accent-red);
     font-weight: 700;
 }
 
 .btn-proceed {
-    display: inline-block;
-    background-color: var(--accent-color);
-    color: #fff;
-    padding: 0.9rem 1.8rem; /* Larger padding */
+    display: block; /* Make it block to center easily */
+    width: fit-content; /* Size to content */
+    margin-left: auto; /* Center */
+    margin-right: auto; /* Center */
+    background-color: var(--accent-green); /* UPDATED color */
+    color: var(--bg-subtle-contrast); /* White text */
+    padding: 0.8rem 1.8rem;
     border: none;
-    border-radius: 4px;
-    font-family: var(--font-secondary);
-    font-size: 1.1rem;
+    border-radius: var(--subtle-radius);
+    font-family: var(--font-sans);
+    font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.1s ease; /* Add transform transition */
+    transition: background-color 0.2s ease, transform 0.1s ease;
     text-decoration: none;
-    margin-top: 2rem;
+    margin-top: 3rem; /* INCREASED space */
 }
 
 .btn-proceed:hover {
-    background-color: var(--accent-hover);
-    color: #fff;
+    background-color: var(--accent-green-darker); /* UPDATED hover color */
+    color: var(--bg-subtle-contrast);
     text-decoration: none;
-    transform: translateY(-2px); /* Subtle lift on hover */
+    transform: translateY(-1px);
 }
 
-/* --- Product Catalogue Page --- */
+/* --- Product Catalogue Page Refined --- */
 .product-catalogue {
     max-width: 1200px;
     width: 100%;
-    margin: 2rem auto;
-    padding: 0 1rem;
+    margin: 3rem auto;
+    padding: 0 1.5rem;
     flex-grow: 1;
+    position: relative; /* Needed for watermark */
 }
+
+/* Subtle background watermark on product catalogue */
+.product-catalogue::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px; /* Fixed size example */
+    height: 400px;
+    background-image: url('KK_logo_6.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: 0.03; /* Very subtle */
+    pointer-events: none; /* Click through */
+    z-index: 0; /* Behind content */
+    filter: grayscale(100%) contrast(0%); /* Make it very light grey */
+}
+
 
 .swiper-container {
     width: 100%;
     height: auto;
-    background-color: var(--secondary-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 6px; /* Rounded corners */
-    padding: 2rem 0;
-    position: relative;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.07); /* Subtle shadow */
+    background-color: var(--bg-subtle-contrast);
+    border: 1px solid var(--border-muted);
+    border-radius: var(--subtle-radius);
+    padding: 0;
+    position: relative; /* Keep for positioning arrows/pagination */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    overflow: hidden;
+    z-index: 1; /* Ensure it's above the watermark */
 }
+
+/* Carousel Counter */
+.carousel-counter {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 10; /* Above slides */
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    background-color: rgba(255, 255, 255, 0.8); /* Slight background */
+    padding: 0.2em 0.6em;
+    border-radius: 3px;
+    letter-spacing: 0.05em;
+}
+
+/* Simple graphic element for counter */
+.carousel-counter::before {
+    content: '●'; /* Simple dot - replace with SVG or better icon if desired */
+    margin-right: 0.5em;
+    opacity: 0.5;
+}
+
 
 .swiper-slide {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    padding: 1.5rem 3rem; /* Adjusted padding */
+    padding: 3rem 4rem;
     height: auto;
-    overflow: hidden; /* Prevent content spill */
 }
 
 .product-content {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 3rem;
     width: 100%;
 }
 
 .product-content img {
     width: 100%;
-    max-width: 400px;
+    max-width: 450px;
     height: auto;
     object-fit: contain;
     margin: 0 auto;
-    /* border: 1px solid var(--border-color); REMOVED - Replaced by shadow */
     background-color: #fff;
-    border-radius: var(--image-radius); /* ADDED: Rounded corners */
-    box-shadow: var(--image-shadow); /* ADDED: Subtle shadow */
-    cursor: pointer; /* ADDED: Indicate clickable */
-    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth transition */
+    border-radius: var(--image-radius);
+    box-shadow: var(--image-shadow);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .product-content img:hover {
-    transform: scale(1.02); /* Slight zoom on hover */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Slightly enhance shadow on hover */
+    transform: scale(1.015);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .product-details {
@@ -271,146 +378,211 @@ li {
 }
 
 .product-details h2 {
-    font-size: 1.6rem; /* REDUCED: Smaller title */
+    font-size: 1.75rem;
     margin-bottom: 0.5em;
     font-weight: 600;
+    letter-spacing: -0.015em;
 }
 
 .req-code {
-    font-size: 0.9rem;
-    color: var(--accent-green-2); /* UPDATED: Use accent green */
-    margin-bottom: 1.5em; /* More space */
-    font-family: monospace;
-    font-weight: 600; /* Make it stand out slightly */
+    margin-bottom: 1.5em;
+    color: var(--accent-green);
+    font-weight: 500;
+    display: block;
 }
 
 .description {
-    font-size: 0.95rem;
+    font-size: 1rem;
     margin-bottom: 1.5em;
-    max-height: 350px; /* Adjust as needed */
+    max-height: 350px;
     overflow-y: auto;
-    padding-right: 15px; /* More space for scrollbar */
-    color: #495057; /* Slightly lighter description text */
+    padding-right: 15px;
+    color: var(--text-body);
+    mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
 }
 
-/* Optional: Nicer scrollbar for Webkit browsers */
-.description::-webkit-scrollbar {
-  width: 8px;
-}
-.description::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 10px;
-}
-.description::-webkit-scrollbar-thumb {
-  background: #ccc;
-  border-radius: 10px;
-}
-.description::-webkit-scrollbar-thumb:hover {
-  background: #aaa;
-}
+.description::-webkit-scrollbar { width: 6px; }
+.description::-webkit-scrollbar-track { background: transparent; }
+.description::-webkit-scrollbar-thumb { background: var(--border-muted); border-radius: 3px;}
+.description::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
 
 
-/* ADDED: Style for notice paragraphs */
 .notice-paragraph {
     font-style: italic;
-    font-size: 0.9rem; /* Slightly smaller */
-    color: #5a6268; /* Muted color */
-    margin-top: 1.5em;
-    padding: 0.8em;
-    background-color: #f8f9fa; /* Very light grey background */
-    border-left: 3px solid var(--accent-color); /* Accent border */
-    border-radius: 0 4px 4px 0;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-top: 2em;
+    padding: 1em 1.2em;
+    background-color: var(--bg-lightest);
+    border-left: 3px solid var(--border-muted);
+    border-radius: 0 var(--subtle-radius) var(--subtle-radius) 0;
 }
 
 .notice-paragraph strong {
-    font-style: normal; /* Keep keyword non-italic */
-    font-weight: 700;
-    color: var(--heading-color); /* Make keyword slightly darker */
+    font-style: normal;
+    font-weight: 600;
+    color: var(--text-headings);
 }
 
 
 .price {
-    font-size: 1.5rem; /* Slightly larger price */
-    font-weight: 700; /* Bolder price */
-    color: var(--accent-green-1); /* UPDATED: Use accent green */
-    margin-top: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--accent-green);
+    margin-top: 2rem;
+    font-family: var(--font-mono);
+    letter-spacing: -0.01em;
 }
 
-/* --- Swiper Navigation/Pagination --- */
+/* --- Swiper Navigation/Pagination Refined --- */
 .swiper-button-next,
 .swiper-button-prev {
-    color: var(--accent-color) !important;
-    background-color: rgba(255, 255, 255, 0.8); /* Slightly more opaque */
+    color: var(--accent-green) !important; /* UPDATED color */
+    background-color: rgba(255, 255, 255, 0.8); /* Increased opacity slightly */
     border-radius: 50%;
-    width: 44px !important;
-    height: 44px !important;
-    margin-top: -22px !important;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.15); /* Add shadow to buttons */
-    transition: background-color 0.2s ease, color 0.2s ease;
+    width: 40px !important;
+    height: 40px !important;
+    margin-top: -20px !important;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
+    top: 50%;
 }
+
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
-     color: var(--accent-hover) !important;
+     color: var(--accent-green-darker) !important; /* UPDATED hover color */
      background-color: rgba(255, 255, 255, 0.95);
+     transform: scale(1.05);
 }
 
 .swiper-button-next::after,
 .swiper-button-prev::after {
-    font-size: 20px !important;
+    font-size: 16px !important;
+    font-weight: 900;
+}
+
+.swiper-pagination {
+    bottom: 15px !important;
 }
 
 .swiper-pagination-bullet {
-    background: var(--accent-color) !important;
-    opacity: 0.4 !important; /* Less opaque inactive */
+    background: var(--border-muted) !important;
+    opacity: 0.6 !important;
+    width: 8px !important;
+    height: 8px !important;
     transition: background-color 0.2s ease, opacity 0.2s ease;
 }
 
 .swiper-pagination-bullet-active {
-    background: var(--accent-hover) !important;
+    background: var(--text-headings) !important;
     opacity: 1 !important;
 }
 
-/* --- Footer --- */
+/* --- Footer Refined --- */
 .portal-footer {
-    background-color: var(--footer-bg);
-    color: #4b5563; /* Slightly adjusted text color */
+    background-color: var(--bg-subtle-contrast);
+    color: var(--text-muted);
     font-size: 0.8rem;
-    padding: 1rem;
+    padding: 2rem 1rem;
     text-align: center;
-    margin-top: 3rem; /* More space above footer */
-    border-top: 1px solid var(--border-color);
+    margin-top: 4rem;
+    border-top: 1px solid var(--border-muted);
 }
 
-/* ... (rest of footer styles remain the same) ... */
+.minimal-footer {
+    padding: 1.5rem;
+    display: flex; /* Use flex to align items */
+    justify-content: center;
+    align-items: center;
+    gap: 1em; /* Space between text and logo */
+}
+.minimal-footer img.footer-logo {
+    height: 20px; /* Smaller logo in minimal footer */
+    width: auto;
+    opacity: 0.6; /* Make it muted */
+    /* Assume black-on-transparent PNG or apply filter if needed */
+}
 
-/* --- ADDED: Image Lightbox Styles --- */
+.detailed-footer {
+    padding: 3rem 1.5rem;
+    text-align: left;
+}
+
+.detailed-footer .footer-section {
+    max-width: 800px;
+    margin: 0 auto 2.5rem auto;
+}
+
+.detailed-footer strong {
+    color: var(--text-headings);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.5em;
+    font-size: 0.85rem;
+    font-style: normal;
+}
+
+.compliance-notice p {
+    font-size: 0.75rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+}
+.copyright {
+    text-align: center; /* Center copyright section */
+}
+.copyright p {
+    margin-bottom: 0.8em; /* More space between lines */
+}
+.copyright span.monospace {
+    display: inline-block;
+    margin: 0 0.5em;
+}
+.copyright img.footer-logo {
+    display: block;
+    height: 24px; /* Size for detailed footer */
+    width: auto;
+    margin: 1.5em auto 0 auto; /* Space above logo */
+    opacity: 0.7; /* Muted appearance */
+     /* Assume black-on-transparent PNG or apply filter if needed */
+}
+
+
+/* --- Image Lightbox Styles Refined --- */
 #image-lightbox {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1000; /* Sit on top */
+    display: none;
+    position: fixed;
+    z-index: 1000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0, 0, 0, 0.85); /* Black w/ opacity */
-    cursor: pointer; /* Indicate clickable to close */
+    overflow: auto;
+    background-color: rgba(17, 24, 39, 0.9);
+    cursor: pointer;
     justify-content: center;
     align-items: center;
+    padding: 20px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
 }
 
 #image-lightbox.active {
-    display: flex; /* Use flex to center content */
+    display: flex;
+    animation: fadeIn 0.3s ease;
 }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
 
 #lightbox-img {
     margin: auto;
     display: block;
     max-width: 90%;
     max-height: 90%;
-    border-radius: var(--image-radius); /* Consistent rounding */
-    box-shadow: 0 10px 25px rgba(0,0,0,0.4); /* Shadow for the lightbox image */
-    cursor: default; /* Normal cursor over the image itself */
+    border-radius: var(--image-radius);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    cursor: default;
 }
 
 /* --- Responsive Adjustments --- */
@@ -418,51 +590,44 @@ li {
     .product-content {
         flex-direction: row;
         align-items: flex-start;
+        gap: 4rem;
     }
     .product-content img {
-        width: 40%;
-        max-width: 450px;
+        width: 45%;
+        max-width: 500px;
         margin: 0;
     }
      .product-details {
         width: 55%;
+        padding-top: 1rem;
     }
     .swiper-slide {
-         padding: 2.5rem 4rem; /* Increased padding */
+         padding: 4rem 5rem;
     }
+    .swiper-button-prev { left: 15px !important; } /* Adjust position */
+    .swiper-button-next { right: 15px !important; }
 }
 
 @media (max-width: 600px) {
-     .header-content {
-         flex-direction: column;
-         gap: 0.5rem;
-     }
-     .top-nav {
-         text-align: center;
-         width: 100%;
-         margin-top: 0.5rem;
-     }
-     .top-nav a {
-         margin: 0 0.3rem;
-         display: inline-block;
-     }
-     .landing-content h1 { font-size: 1.8rem; }
-     .landing-content h2 { font-size: 1rem; }
+     .header-content { flex-direction: column; gap: 1rem; }
+     .header-logo { margin-bottom: 0.5rem; } /* Space below logo */
+     .top-nav { text-align: center; width: 100%; }
+     .top-nav a { margin: 0 0.4rem; display: inline-block; }
 
-     .swiper-button-next,
-     .swiper-button-prev {
-         display: none;
-     }
-     .swiper-slide {
-         padding: 1.5rem 1rem; /* Adjusted padding */
-     }
-     .description {
-        max-height: 250px;
-     }
-     .product-details h2 {
-        font-size: 1.4rem; /* Further reduce title on mobile */
-     }
-     .price {
-        font-size: 1.3rem; /* Adjust price size */
-     }
+     .landing-content { margin: 2rem auto; padding: 1.5rem; }
+     .landing-content p:not(.welcome-text),
+     .landing-content .warning-box { text-align: left; } /* Use left on mobile, justify looks odd */
+     .landing-content h1 { font-size: 2rem; }
+     .landing-content h2 { font-size: 1rem; margin-bottom: 2em;}
+
+     .swiper-button-next, .swiper-button-prev { display: none; }
+     .swiper-slide { padding: 2rem 1.5rem; }
+     .product-content { gap: 2rem; }
+     .description { max-height: 280px; }
+     .product-details h2 { font-size: 1.5rem; }
+     .price { font-size: 1.4rem; }
+
+     .carousel-counter { top: 10px; right: 10px; font-size: 0.7rem; }
+
+     #image-lightbox { padding: 10px; }
 }
